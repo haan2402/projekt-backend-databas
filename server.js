@@ -1,12 +1,15 @@
+//skapar REST-webbtjänst med MongoDB, Express och Cors, använder Mongoose
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/authRoute");
 const cors = require("cors");
 require("dotenv").config();
 
+//initierar express
 const app = express();
 const port = process.env.PORT || 3000;
 
+//aktiverar cors
 app.use(cors());
 app.use(express.json());
 
