@@ -32,3 +32,30 @@ router.get("/", async (req, res) => {
     }
 });
 
+//uppdatera en befintlig maträtt med ID
+router.put("/:id", async (req, res) => {
+    try {
+        const foodItemId = req.params.id;
+        const updatedDish = await FoodItem.updateOne (
+            {_id: foodItemId},
+            { $set: req.body}
+        );
+        return res.json({message: "Maträtt är uppdaterad!"});
+    } catch(error) {
+        return res.status(500).json({message: "Gick inte att ändra maträtt..", error});
+    }
+});
+
+//radera en maträtt från menyn med ID
+router.delete("/:id", async (req, res) => {
+    try {
+        const foodItemId = req.params.id;
+        const deletedDish = await FoodItem.deleteOne({_id: foodItemId});
+
+        return res.json({message: "Maträtt är raderad!"});
+    } catch(error) {
+        return res.status(500).json({message: "Gick inte att radera maträtt..", error});
+    }
+});
+
+module.exports = router; 

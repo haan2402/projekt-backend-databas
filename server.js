@@ -2,6 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/authRoute");
+const foodItem = require("./routes/foodItem");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -13,7 +14,9 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-
+//routing
+app.use("/api/auth", authRoute);
+app.use("/api/foodItems", foodItem);
 
 
 //ansluter till MongoDB databas, Atlas
