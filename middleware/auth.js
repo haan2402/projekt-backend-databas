@@ -6,7 +6,7 @@ function authToken(req, res, next) {
     const token = authHeader && authHeader.split(' ')[1];
 
     //felmeddelande om token inte skulle skickas med
-    if(token === null) {
+    if(!token) {
         return res.status(401).json({message: "Ingen token - ingen behörighet"});
     }
 
