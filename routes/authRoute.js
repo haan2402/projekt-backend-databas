@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
+const User = require("../models/Users");
 const jwt = require("jsonwebtoken");
 
 //post för ny användare
@@ -41,7 +41,7 @@ router.post("/login", async (req, res) => {
     }
 
     //kontrollerar lösenord
-    const passwordMatch = await user.comparePassword(password);
+    const passwordMatch = await userMatch.comparePassword(password);
     if(!passwordMatch) {
         return res.status(401).json({error: "Ogiltigt användarnamn/lösenord"});
     } else {
