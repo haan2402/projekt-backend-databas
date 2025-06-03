@@ -11,7 +11,7 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-//aktiverar cors
+//aktiverar cors, lagt till länkar till netlify
 app.use(cors({
     origin: ['http://localhost:1234', 'https://haan2402-bistro-norr.netlify.app', 'https://haan2402-bistro-norr-admin.netlify.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -40,4 +40,4 @@ mongoose.connect(process.env.DATABASE).then(() => {
 //startar applikationen
 app.listen(port, () => {
     console.log(`Server is running on: ${port}`);
-});
+}); 
