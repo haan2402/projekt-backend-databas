@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 
 //aktiverar cors
 app.use(cors({
-    origin: ['http://localhost:1234'],
+    origin: ['http://localhost:1234', 'https://haan2402-bistro-norr.netlify.app', 'https://haan2402-bistro-norr-admin.netlify.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -39,5 +39,5 @@ mongoose.connect(process.env.DATABASE).then(() => {
 
 //startar applikationen
 app.listen(port, () => {
-    console.log(`Server is running on: http://localhost:${port}`);
+    console.log(`Server is running on: ${port}`);
 });
