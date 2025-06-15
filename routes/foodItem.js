@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const FoodItem = require("../models/Menu");
+const authToken = require("../middleware/auth"); //importerar min middleware för att skydda vissa delar av sidan
 
 //skapa en ny maträtt till menyn med POST
-router.post("/", async (req, res) => {
+router.post("/", authToken, async (req, res) => {
     try {
         const { name, description, price, category } = req.body;
 
@@ -33,7 +34,7 @@ router.get("/", async (req, res) => {
 });
 
 //uppdatera en befintlig maträtt med ID
-router.put("/:id", async (req, res) => {
+router.put("/:id", authToken, async (req, res) => {
     try {
         const foodItemId = req.params.id;
         const updatedDish = await FoodItem.updateOne (
@@ -47,7 +48,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //radera en maträtt från menyn med ID
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authToken, async (req, res) => {
     try {
         const foodItemId = req.params.id;
         const deletedDish = await FoodItem.deleteOne({_id: foodItemId});
